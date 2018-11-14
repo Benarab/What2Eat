@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">What2Eat</string>
+
+    <string name="title_oversigt">Oversigt</string>
+    <string name="title_opskrifter">Opskrifter</string>
+    <string name="title_what2eat">What2Eat</string>
+    <string name="title_omos">Om Os</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

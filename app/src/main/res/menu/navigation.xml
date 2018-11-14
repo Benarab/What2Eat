@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_oversigt"
+        android:icon="@drawable/ic_oversigt_black"
+        android:title="@string/title_oversigt" />
+
+    <item
+        android:id="@+id/navigation_opskrifter"
+        android:icon="@drawable/ic_recipes_black"
+        android:title="@string/title_opskrifter" />
+
+    <item
+        android:id="@+id/navigation_what2eat"
+        android:icon="@drawable/ic_food_black"
+        android:title="@string/title_what2eat" />
+
+    <item
+        android:id="@+id/navigation_omos"
+        android:icon="@drawable/ic_info_black"
+        android:title="@string/title_omos" />
+</menu>
