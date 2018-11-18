@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_oversigt"
-        android:icon="@drawable/ic_oversigt_black"
-        android:title="@string/title_oversigt" />
+        android:id="@+id/navigation_plan"
+        android:icon="@drawable/ic_plan_black"
+        android:title="Planlagte måltider" />
 
     <item
         android:id="@+id/navigation_opskrifter"

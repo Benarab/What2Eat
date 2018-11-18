@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">What2Eat</string>
 
-    <string name="title_oversigt">Oversigt</string>
+    <string name="title_planlagtemåltider">Planlagte Måltider</string>
     <string name="title_opskrifter">Opskrifter</string>
     <string name="title_what2eat">What2Eat</string>
     <string name="title_omos">Om Os</string>
