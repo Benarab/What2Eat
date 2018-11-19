@@ -18,9 +18,20 @@ import android.widget.ImageView;
 
 public class OpskrifterFragment extends Fragment {
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_opskrifter, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
+        FloatingActionButton showDialog = (FloatingActionButton) view.findViewById(R.id.fab_filter);
+        showDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+                View mview = getLayoutInflater().inflate(R.layout.filter_popup, null);
+                mBuilder.setView((mview));
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+
+        });
+        return view;
     }
 }
