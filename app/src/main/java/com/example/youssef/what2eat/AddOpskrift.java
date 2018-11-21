@@ -32,10 +32,10 @@ import static android.app.Activity.RESULT_OK;
 public class AddOpskrift extends Fragment {
 
 private static  final int RESULT_LOAD_IMAGES = 1;
-private TextView filepath_name;
-private  EditText varighed, navn;
-private Spinner genre, kategori;
-
+ TextView filepath_name;
+ EditText varighed, navn;
+ Spinner genre, kategori;
+ Button uploadImg, opret_knap;
 
 
     @Nullable
@@ -43,8 +43,8 @@ private Spinner genre, kategori;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        Button uploadImg = (Button) view.findViewById(R.id.billede_button);
-        Button opret_knap = (Button) view.findViewById(R.id.addOpskrift);
+      uploadImg = (Button) view.findViewById(R.id.billede_button);
+      opret_knap = (Button) view.findViewById(R.id.addOpskrift);
          varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
         navn = (EditText) view.findViewById(R.id.opskrift_navn);
         genre = (Spinner) view.findViewById(R.id.opskrift_genre);

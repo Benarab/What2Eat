@@ -32,6 +32,19 @@ public class OpskrifterFragment extends Fragment {
             }
 
         });
+
+
+        FloatingActionButton addOpskrift = (FloatingActionButton) view.findViewById(R.id.addOpskrift);
+        addOpskrift.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
+                View mview = getLayoutInflater().inflate(R.layout.fragment_add_opskrift, null);
+                mBuilder.setView((mview));
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+        });
         return view;
     }
 }

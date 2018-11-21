@@ -10,9 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.youssef.what2eat.Models.Opskrifter;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView appBarLabel;
+    public static ArrayList<Opskrifter> lokale_opskrifters = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
