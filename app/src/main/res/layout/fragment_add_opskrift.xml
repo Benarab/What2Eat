@@ -117,6 +117,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="110dp"
             android:layout_marginRight="110dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/colorPrimary"
             android:drawableRight="@drawable/ic_add_white"
             android:padding="10dp"
