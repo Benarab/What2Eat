@@ -1,5 +1,6 @@
 package com.example.youssef.what2eat;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.youssef.what2eat.Models.Opskrifter;

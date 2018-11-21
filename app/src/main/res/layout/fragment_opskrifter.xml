@@ -14,40 +14,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_sort_by_alpha_white"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_sort_by_alpha_white" />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_timer_white"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_timer_white" />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_star_white"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_star_white" />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_date_white"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_date_white" />
 
     </LinearLayout>
 
@@ -58,39 +58,36 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_weight="1">
 
         </ListView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_filter"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/filter"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:background="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:gravity="right">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/addOpskrift"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="9dp"
-            android:layout_marginBottom="55dp"
             android:background="@color/colorPrimary"
-            android:src="@android:drawable/ic_input_add" />
+            android:src="@drawable/ic_add_white" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/filter" />
+        </LinearLayout>
 
     </RelativeLayout>
 
