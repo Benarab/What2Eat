@@ -1,59 +1,76 @@
 package com.example.youssef.what2eat;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.youssef.what2eat.Models.Opskrifter;
+public class AddOpskrift extends DialogFragment  {
 
-import org.w3c.dom.Text;
+            private static  final int RESULT_LOAD_IMAGES = 1;
+            TextView filepath_name;
 
-import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList;
+            public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+                View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
 
-import static android.app.Activity.RESULT_OK;
-
-
-public class AddOpskrift extends Fragment {
-
-private static  final int RESULT_LOAD_IMAGES = 1;
- TextView filepath_name;
- EditText varighed, navn;
- Spinner genre, kategori;
- Button uploadImg, opret_knap;
+                filepath_name = (TextView) view.findViewById((R.id.billede_path)) ;
 
 
-    @Nullable
+                Button soeg_billede = (Button) view.findViewById(R.id.billede_button);
+        soeg_billede.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGES);
+
+
+            }
+
+        });
+
+        return view;
+    }
+
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGES && data != null) {
+            Uri selectedImage = data.getData();
+            filepath_name.setText(selectedImage.getPath());
+        }}
+}
 
-      uploadImg = (Button) view.findViewById(R.id.billede_button);
-      opret_knap = (Button) view.findViewById(R.id.addOpskrift);
-         varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
+   /* @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
+        uploadImg = (Button) view.findViewById(R.id.billede_button);
+        opret_knap = (Button) view.findViewById(R.id.addOpskrift);
+        varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
         navn = (EditText) view.findViewById(R.id.opskrift_navn);
         genre = (Spinner) view.findViewById(R.id.opskrift_genre);
         kategori = (Spinner) view.findViewById(R.id.opskrift_kategori);
 
-
-
-
-        filepath_name = (TextView) view.findViewById(R.id.billede_path) ;
+        filepath_name = (TextView) view.findViewById(R.id.billede_path);
         uploadImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,21 +78,18 @@ private static  final int RESULT_LOAD_IMAGES = 1;
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGES);
             }
 
-
-
-
         });
 
         opret_knap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tilføjopskrift();
+                Tilfoejopskrift();
             }
         });
+
         return view;
     }
-
-    private void Tilføjopskrift() {
+    private void Tilfoejopskrift() {
      ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
 int varighedText = Integer.parseInt(varighed.getText().toString());
 String navnText = navn.getText().toString();
@@ -99,6 +113,6 @@ ni.genre = genretext;
         if (requestCode == RESULT_LOAD_IMAGES && resultCode == RESULT_OK && data != null) {
            Uri selectedImage = data.getData();
            filepath_name.setText(selectedImage.getPath());
-        }}}
+        }}}*/
 
 

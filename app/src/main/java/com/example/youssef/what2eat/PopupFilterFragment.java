@@ -1,5 +1,6 @@
 package com.example.youssef.what2eat;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PopupFilterFragment extends Fragment {
+public class PopupFilterFragment extends android.support.v4.app.DialogFragment {
 
     @Nullable
     @Override

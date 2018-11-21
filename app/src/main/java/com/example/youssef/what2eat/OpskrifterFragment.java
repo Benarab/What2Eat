@@ -2,9 +2,11 @@ package com.example.youssef.what2eat;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -24,11 +26,10 @@ public class OpskrifterFragment extends Fragment {
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
-                View mview = getLayoutInflater().inflate(R.layout.filter_popup, null);
-                mBuilder.setView((mview));
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+
+                PopupFilterFragment dialog = new PopupFilterFragment();
+                dialog.show(getFragmentManager(), "PopupFilterFragment");
+
             }
 
         });
@@ -38,11 +39,9 @@ public class OpskrifterFragment extends Fragment {
         addOpskrift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(v.getContext());
-                View mview = getLayoutInflater().inflate(R.layout.fragment_add_opskrift, null);
-                mBuilder.setView((mview));
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+
+                AddOpskrift dialog = new AddOpskrift();
+                dialog.show(getFragmentManager(), "AddOpskrift");
             }
         });
         return view;
