@@ -35,7 +35,6 @@ private static  final int RESULT_LOAD_IMAGES = 1;
 private TextView filepath_name;
 private  EditText varighed, navn;
 private Spinner genre, kategori;
-    Button loginbutton, recordbutton, viewbutton, projectsbutton;
 
 
 
