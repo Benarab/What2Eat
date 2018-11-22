@@ -34,6 +34,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     EditText t_varighed, t_navn;
     Spinner t_genre, t_kategori;
     LinearLayout ny_layout, ingrediens_layout;
+    ArrayAdapter<CharSequence> måleenhedAdapter;
     private int id = 0;
 
 
@@ -49,7 +50,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         måleenhedSpinner2 = (Spinner) view.findViewById(R.id.spinner2);
         måleenhedSpinner3 = (Spinner) view.findViewById(R.id.spinner3);
 
-        ArrayAdapter<CharSequence> måleenhedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.måleenheder, android.R.layout.simple_spinner_item);
+        måleenhedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.måleenheder, android.R.layout.simple_spinner_item);
         måleenhedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         måleenhedSpinner1.setAdapter(måleenhedAdapter);
@@ -140,7 +141,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
         EditText ed_mængde = new EditText(getContext());
         Spinner spinner_maal = new Spinner(getContext());
-
+spinner_maal.setAdapter(måleenhedAdapter);
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
