@@ -1,39 +1,49 @@
 package com.example.youssef.what2eat;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class AddOpskrift extends DialogFragment  {
+public class AddOpskrift extends DialogFragment {
 
-            private static  final int RESULT_LOAD_IMAGES = 1;
-            TextView filepath_name;
+    private static final String[] INGREDIENSER = new String[]{
+            "Salt", "Pepper", "Mælk", "Æg", "Mel", "Sukker", "Vand", "Smør", "Olie", "Flormelis", "Gær", "Chokolade", "Kartofler", "Tomater", "Argurk", "Ost", "Kylling", "Hakket oksekød", "Bagepulver"
+    };
 
-            public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-                View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
+    private static final int RESULT_LOAD_IMAGES = 1;
 
-                filepath_name = (TextView) view.findViewById((R.id.billede_path)) ;
+    TextView filepath_name;
 
+    private Spinner måleenhedSpinner1, måleenhedSpinner2, måleenhedSpinner3;
 
-                Button soeg_billede = (Button) view.findViewById(R.id.billede_button);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
+
+        filepath_name = (TextView) view.findViewById((R.id.billede_path));
+
+        måleenhedSpinner1 = (Spinner) view.findViewById(R.id.spinner1);
+        måleenhedSpinner2 = (Spinner) view.findViewById(R.id.spinner2);
+        måleenhedSpinner3 = (Spinner) view.findViewById(R.id.spinner3);
+
+        ArrayAdapter<CharSequence> måleenhedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.måleenheder, android.R.layout.simple_spinner_item);
+        måleenhedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        måleenhedSpinner1.setAdapter(måleenhedAdapter);
+        måleenhedSpinner2.setAdapter(måleenhedAdapter);
+        måleenhedSpinner3.setAdapter(måleenhedAdapter);
+
+        Button soeg_billede = (Button) view.findViewById(R.id.billede_button);
         soeg_billede.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,9 +55,13 @@ public class AddOpskrift extends DialogFragment  {
 
         });
 
+        AutoCompleteTextView et_ingredienser1 = view.findViewById(R.id.et_ingredienser1);
+        ArrayAdapter<String> adapter_ingredienser = new ArrayAdapter<String>(getContext(),
+                R.layout.custom_autotextview, R.id.text_view_list_item, INGREDIENSER);
+        et_ingredienser1.setAdapter(adapter_ingredienser);
+
         return view;
     }
-
 
 
     @Override
@@ -56,7 +70,8 @@ public class AddOpskrift extends DialogFragment  {
         if (requestCode == RESULT_LOAD_IMAGES && data != null) {
             Uri selectedImage = data.getData();
             filepath_name.setText(selectedImage.getPath());
-        }}
+        }
+    }
 }
 
    /* @Override
