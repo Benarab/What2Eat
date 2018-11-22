@@ -103,101 +103,108 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/ingrediens_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <AutoCompleteTextView
-                    android:id="@+id/et_ingredienser1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:completionThreshold="1"
-                    android:hint="Ingrediens"
-                    android:singleLine="true"
-                    android:textSize="15dp" />
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
-                <EditText
+                    <AutoCompleteTextView
+                        android:id="@+id/et_ingredienser1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:completionThreshold="1"
+                        android:hint="Ingrediens"
+                        android:singleLine="true"
+                        android:textSize="15dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Mængde"
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    </Spinner>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Mængde"
-                    android:inputType="numberDecimal"
-                    android:textSize="15dp" />
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Indgrediens"
+                        android:singleLine="true"
+                        android:textSize="15dp" />
 
-                </Spinner>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Mængde"
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
-            </LinearLayout>
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                    </Spinner>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Indgrediens"
-                    android:singleLine="true"
-                    android:textSize="15dp" />
+                </LinearLayout>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Mængde"
-                    android:inputType="numberDecimal"
-                    android:textSize="15dp" />
-
-                <Spinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                </Spinner>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Indgrediens"
-                    android:singleLine="true"
-                    android:textSize="15dp" />
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Mængde"
-                    android:inputType="numberDecimal"
-                    android:textSize="15dp" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Indgrediens"
+                        android:singleLine="true"
+                        android:textSize="15dp" />
 
-                <Spinner
-                    android:id="@+id/spinner3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Mængde"
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
-                </Spinner>
+                    <Spinner
+                        android:id="@+id/spinner3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
+                    </Spinner>
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
