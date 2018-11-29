@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,19 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
             "Salt", "Pepper", "Mælk", "Æg", "Mel", "Sukker", "Vand", "Smør", "Olie", "Flormelis", "Gær", "Chokolade", "Kartofler", "Tomater", "Argurk", "Ost", "Kylling", "Hakket oksekød", "Bagepulver"
     };
 
+    private static final String[] KATEGORI = new String[]{
+            "Hovedret", "Forret", "Dessert", "Snack", "Drikke"
+    };
+
+    private static final String[] GENRE = new String[]{
+            "Dansk", "Indisk", "Italiansk", "Amerikansk", "Fransk", "Thai", "Kinesisk", "Japansk", "Spansk", "Mexikansk", "Afrikansk", "Tyrkisk", "Marokkansk", "Svensk", "Norsk", "Portugesisk", "Tysk", "Græsk", "Engelsk", "Britisk"
+    };
+
     private static final int RESULT_LOAD_IMAGES = 1;
     TextView filepath_name;
     Button uploadImg, opret_knap, soeg_billede, tilfoejing;
     EditText t_varighed, t_navn;
-    Spinner t_genre, t_kategori;
+    AutoCompleteTextView t_genre, t_kategori;
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
     private int id = 0;
@@ -63,8 +72,8 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
         t_varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
         t_navn = (EditText) view.findViewById(R.id.opskrift_navn);
-        t_genre = (Spinner) view.findViewById(R.id.opskrift_genre);
-        t_kategori = (Spinner) view.findViewById(R.id.opskrift_kategori);
+        t_genre = (AutoCompleteTextView) view.findViewById(R.id.opskrift_genre);
+        t_kategori = (AutoCompleteTextView) view.findViewById(R.id.opskrift_kategori);
 
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
 
@@ -81,6 +90,16 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         ArrayAdapter<String> adapter_ingredienser = new ArrayAdapter<String>(getContext(),
                 R.layout.custom_autotextview, R.id.text_view_list_item, INGREDIENSER);
         et_ingredienser1.setAdapter(adapter_ingredienser);
+
+        AutoCompleteTextView et_genre = view.findViewById(R.id.opskrift_genre);
+        ArrayAdapter<String> adapter_genre = new ArrayAdapter<String>(getContext(),
+                R.layout.custom_autotextview, R.id.text_view_list_item, GENRE);
+        et_genre.setAdapter(adapter_genre);
+
+        AutoCompleteTextView et_kategori = view.findViewById(R.id.opskrift_kategori);
+        ArrayAdapter<String> adapter_kategori = new ArrayAdapter<String>(getContext(),
+                R.layout.custom_autotextview, R.id.text_view_list_item, KATEGORI);
+        et_kategori.setAdapter(adapter_kategori);
 
         return view;
     }
@@ -138,22 +157,29 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         ny_layout = new LinearLayout(getContext());
         ny_layout.setOrientation(LinearLayout.HORIZONTAL);
         EditText ed_ingrediens = new EditText(getContext());
-
         EditText ed_mængde = new EditText(getContext());
         Spinner spinner_maal = new Spinner(getContext());
-spinner_maal.setAdapter(måleenhedAdapter);
+
+        ed_ingrediens.setHint("Ingrediens");
+        ed_ingrediens.setTextSize(17);
+        ed_mængde.setHint("Mængde");
+        ed_mængde.setTextSize(16);
+
+        spinner_maal.setAdapter(måleenhedAdapter);
+
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 1.0f
         );
+
         spinner_maal.setLayoutParams(param);
         ed_ingrediens.setLayoutParams(param);
         ed_mængde.setLayoutParams(param);
 
-        ny_layout.addView(spinner_maal);
         ny_layout.addView(ed_ingrediens);
         ny_layout.addView(ed_mængde);
+        ny_layout.addView(spinner_maal);
 
 ingrediens_layout.addView(ny_layout);
 

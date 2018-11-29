@@ -60,11 +60,13 @@
                     android:layout_weight="1"
                     android:inputType="number" />
 
-                <Spinner
-                    android:id="@+id/maal"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"></Spinner>
+                    android:layout_weight="2"
+                    android:text="min"
+                    android:gravity="center"
+                    android:textSize="20dp"></TextView>
 
             </LinearLayout>
 
@@ -75,10 +77,11 @@
                 android:text="Genre"
                 android:textSize="15dp" />
 
-            <android.support.v7.widget.AppCompatSpinner
+            <AutoCompleteTextView
                 android:id="@+id/opskrift_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:completionThreshold="1"
                 android:layout_marginTop="5dp" />
 
             <TextView
@@ -88,10 +91,11 @@
                 android:text="Kategori"
                 android:textSize="15dp" />
 
-            <Spinner
+            <AutoCompleteTextView
                 android:id="@+id/opskrift_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:completionThreshold="1"
                 android:layout_marginTop="5dp" />
 
             <TextView
