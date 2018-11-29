@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     TextView appBarLabel;
     public static ArrayList<Opskrifter> lokale_opskrifters = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PlanFragment()).commit();
+
+
+        lokale_opskrifters.add(new Opskrifter());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

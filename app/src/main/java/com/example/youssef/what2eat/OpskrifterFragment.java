@@ -12,16 +12,24 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
+import com.example.youssef.what2eat.Models.Opskrifter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OpskrifterFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
+        final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
         FloatingActionButton showDialog = (FloatingActionButton) view.findViewById(R.id.fab_filter);
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +42,9 @@ public class OpskrifterFragment extends Fragment {
 
         });
 
+        ListView lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
+
+        lvOpskrifter.setAdapter(new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters));
 
         FloatingActionButton addOpskrift = (FloatingActionButton) view.findViewById(R.id.addOpskrift);
         addOpskrift.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.example.youssef.what2eat.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.youssef.what2eat.MainActivity;
 import com.example.youssef.what2eat.Models.Opskrifter;
 import com.example.youssef.what2eat.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
 
     private Context context;
-    private List<Opskrifter> values;
+    private ArrayList<Opskrifter> values;
 
-    public OpskrifterAdapter(Context context, List<Opskrifter> values) {
+    public OpskrifterAdapter(Context context, ArrayList<Opskrifter> values) {
         super(context, R.layout.custom_opskrifter_list, values);
 
         this.context = context;
@@ -36,6 +39,8 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
             row = inflater.inflate(R.layout.custom_opskrifter_list, parent, false);
         }
 
+        values = MainActivity.lokale_opskrifters;
+
         ImageView imgOpskrift = (ImageView) row.findViewById(R.id.img_opskrift);
         TextView tvOpskriftnavn = (TextView) row.findViewById(R.id.tv_opskriftNavn);
         TextView tvRating = (TextView) row.findViewById(R.id.tv_rating);
@@ -47,7 +52,7 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
 
 
         Opskrifter item = values.get(position);
-        Image billede = item.getBillede();
+        Bitmap billede = item.getBillede();
         String navn = item.getNavn();
         int rating = item.getRating();
         int varighed = item.getVarighed();
@@ -55,8 +60,8 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         String genre = item.getGenre();
         String beskrivelse = item.getBeskrivelse();
         tvOpskriftnavn.setText(navn);
-        tvRating.setText(rating);
-        tvTilberedelsestid.setText(varighed);
+        tvRating.setText(String.valueOf(rating));
+        tvTilberedelsestid.setText(String.valueOf(varighed));
         tvKategori.setText(kategori);
         tvGenre.setText(genre);
         tvFremgangsmåde.setText(beskrivelse);

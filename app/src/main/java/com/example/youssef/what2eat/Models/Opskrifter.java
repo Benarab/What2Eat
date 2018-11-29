@@ -3,9 +3,9 @@ package com.example.youssef.what2eat.Models;
 import android.graphics.Bitmap;
 import android.media.Image;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Opskrifter {
+public class Opskrifter implements Serializable {
 
     public int ID;
     public String navn;
@@ -14,7 +14,7 @@ public class Opskrifter {
     public String genre;
     public String kategori;
     public int  rating;
-    public Image billede;
+    public Bitmap billede;
     public String beskrivelse;
 
     public int getID() { return ID; }
@@ -31,7 +31,7 @@ public class Opskrifter {
 
     public int getRating() { return rating; }
 
-    public Image getBillede() { return billede; }
+    public Bitmap getBillede() { return billede; }
 
     public String getBeskrivelse() { return beskrivelse; }
 }

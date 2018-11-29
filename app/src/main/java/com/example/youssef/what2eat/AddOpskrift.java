@@ -1,17 +1,13 @@
 package com.example.youssef.what2eat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,22 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youssef.what2eat.Models.Opskrifter;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class AddOpskrift extends DialogFragment implements View.OnClickListener {
 
@@ -82,8 +70,8 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         try {
             String json = sharedPref.getString("MyObject", "");
             ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
-            Gson gson = new Gson();
-            opskrifters = gson.fromJson(json, ArrayList.class);
+            //Gson gson = new Gson();
+            //opskrifters = gson.fromJson(json, ArrayList.class);
         }
 
         catch (Exception e)
@@ -160,12 +148,9 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
         opskrifters.add(no);
 
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         String json = gson.toJson(opskrifters);
-        prefsEditor.putString("MyObject", json);
-
-
-
+        prefsEditor.putString("MyObject", json);*/
     }
 
 
