@@ -1,10 +1,15 @@
 package com.example.youssef.what2eat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -18,10 +23,18 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.youssef.what2eat.Models.Opskrifter;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddOpskrift extends DialogFragment implements View.OnClickListener {
 
@@ -38,12 +51,18 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     };
 
     private static final int RESULT_LOAD_IMAGES = 1;
+
     TextView filepath_name;
     Button uploadImg, opret_knap, soeg_billede, tilfoejing;
     EditText t_varighed, t_navn;
     AutoCompleteTextView t_genre, t_kategori;
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
+    SharedPreferences.Editor prefsEditor;
+    SharedPreferences sharedPref;
+
+
+
     private int id = 0;
 
 
@@ -52,6 +71,31 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
+
+        //Local Storage
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(view.getContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        /////
+
+        //Load Local Storage
+        try {
+            String json = sharedPref.getString("MyObject", "");
+            ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
+            Gson gson = new Gson();
+            opskrifters = gson.fromJson(json, ArrayList.class);
+        }
+
+        catch (Exception e)
+        {
+            Toast toast=Toast.makeText(getContext(),"Ingen data at hente",Toast.LENGTH_SHORT);
+            toast.setMargin(50,50);
+            toast.show();
+
+        }
+
+
+
 
         ingrediens_layout = (LinearLayout) view.findViewById(R.id.ingrediens_layout);
 
@@ -106,14 +150,21 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
     private void Tilfoejopskrift() {
         ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
-/*
-        opskrifters.add(new Opskrifter()
-        [
-                navn =
-                ]);
+
+        Opskrifter no = new Opskrifter();
+        no.ID = 0;
+        no.kategori = t_kategori.getText().toString();
+        no.genre = t_genre.getText().toString();
+        no.navn = t_navn.getText().toString();
 
 
-*/
+        opskrifters.add(no);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(opskrifters);
+        prefsEditor.putString("MyObject", json);
+
+
 
     }
 
@@ -136,8 +187,8 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 break;
 
             case R.id.opret_knap:
-                Tilfoejopskrift();
-                break;
+Tilfoejopskrift();
+break;
 
 
             case R.id.btn_tilføj_ingrediens:
