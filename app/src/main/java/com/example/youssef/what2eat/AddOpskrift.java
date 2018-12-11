@@ -1,5 +1,6 @@
 package com.example.youssef.what2eat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,7 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youssef.what2eat.Models.Opskrifter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AddOpskrift extends DialogFragment implements View.OnClickListener {
@@ -46,8 +50,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     AutoCompleteTextView t_genre, t_kategori;
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
-    SharedPreferences.Editor prefsEditor;
-    SharedPreferences sharedPref;
 
 
 
@@ -59,30 +61,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
-
-        //Local Storage
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(view.getContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        /////
-
-        //Load Local Storage
-        try {
-            String json = sharedPref.getString("MyObject", "");
-            ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
-            //Gson gson = new Gson();
-            //opskrifters = gson.fromJson(json, ArrayList.class);
-        }
-
-        catch (Exception e)
-        {
-            Toast toast=Toast.makeText(getContext(),"Ingen data at hente",Toast.LENGTH_SHORT);
-            toast.setMargin(50,50);
-            toast.show();
-
-        }
-
-
 
 
         ingrediens_layout = (LinearLayout) view.findViewById(R.id.ingrediens_layout);
@@ -122,7 +100,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         ArrayAdapter<String> adapter_ingredienser = new ArrayAdapter<String>(getContext(),
                 R.layout.custom_autotextview, R.id.text_view_list_item, INGREDIENSER);
         et_ingredienser1.setAdapter(adapter_ingredienser);
-
         AutoCompleteTextView et_genre = view.findViewById(R.id.opskrift_genre);
         ArrayAdapter<String> adapter_genre = new ArrayAdapter<String>(getContext(),
                 R.layout.custom_autotextview, R.id.text_view_list_item, GENRE);
@@ -136,9 +113,11 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         return view;
     }
 
-    private void Tilfoejopskrift() {
-        ArrayList<Opskrifter> opskrifters = MainActivity.lokale_opskrifters;
 
+
+    private void Tilfoejopskrift(Context context) {
+
+         ArrayList<Opskrifter> opskrifters  = MainActivity.lokale_opskrifters;
         Opskrifter no = new Opskrifter();
         no.ID = 0;
         no.kategori = t_kategori.getText().toString();
@@ -148,9 +127,17 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
         opskrifters.add(no);
 
-        /*Gson gson = new Gson();
+
+        SharedPreferences appSharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
         String json = gson.toJson(opskrifters);
-        prefsEditor.putString("MyObject", json);*/
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+
+        dismiss();
+        
     }
 
 
@@ -172,7 +159,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 break;
 
             case R.id.opret_knap:
-Tilfoejopskrift();
+Tilfoejopskrift(this.getContext());
 break;
 
 
