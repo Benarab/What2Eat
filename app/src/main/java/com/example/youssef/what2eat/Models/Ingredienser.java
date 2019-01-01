@@ -9,20 +9,25 @@ public class Ingredienser {
     public int foreign_opskrift;
     public String maal_navn;
 
-    public Ingredienser()
+    public Ingredienser(String navn, int antal, int mål, int f_opskrift)
     {
+        ingrediens_id = 0;
+        ingrediens_navn = navn;
+        ingrediens_antal = antal;
+        maal = mål;
+        foreign_opskrift = f_opskrift;
 
-setIngrediens_navn();
+//setIngrediens_navn();
 
 
     }
 
-
+// Her sættes ingrediens navne vedhjælp af de tal som skal indikere navnene.
     public void setIngrediens_navn()
     {
         if(maal == 1)
         {
-            maal_navn = "dl";
+            maal_navn = "Saad er en kylling";
         }
 
         else if(maal != 1 )

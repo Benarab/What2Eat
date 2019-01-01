@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_opskrift_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -129,6 +130,7 @@
                         android:textSize="15dp" />
 
                     <EditText
+                        android:id="@+id/et_mængde1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -153,6 +155,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/et_ingredienser2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -161,6 +164,7 @@
                         android:textSize="15dp" />
 
                     <EditText
+                        android:id="@+id/et_mængde2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -185,6 +189,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/et_ingredienser3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -193,6 +198,7 @@
                         android:textSize="15dp" />
 
                     <EditText
+                        android:id="@+id/et_mængde3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

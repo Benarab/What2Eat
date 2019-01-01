@@ -4,12 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/id_search_EditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:paddingRight="10dp"
+            android:hint="Ingredienser" />
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/id_search_EditText"
+            android:layout_alignRight="@+id/id_search_EditText"
+            android:layout_alignBottom="@+id/id_search_EditText"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/ic_launcher" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/grid_viewList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="5"></GridView>
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/søg_knap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="Tilføj"
+        android:textColor="@color/white" />
+
+    <ListView
+        android:id="@+id/list_søgeresultater"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/title_what2eat"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="30sp"/>
+        android:visibility="invisible">
+    </ListView>
+
+
 
 </LinearLayout>

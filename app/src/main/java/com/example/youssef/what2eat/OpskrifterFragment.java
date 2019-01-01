@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
+import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
 
 import java.util.ArrayList;
@@ -44,7 +45,9 @@ public class OpskrifterFragment extends Fragment {
 
         ListView lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
 
-        lvOpskrifter.setAdapter(new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters));
+
+        if (MainActivity.lokale_opskrifters != null)
+            lvOpskrifter.setAdapter(new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters));
 
         FloatingActionButton addOpskrift = (FloatingActionButton) view.findViewById(R.id.addOpskrift);
         addOpskrift.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +58,9 @@ public class OpskrifterFragment extends Fragment {
                 dialog.show(getFragmentManager(), "AddOpskrift");
             }
         });
+
+
         return view;
     }
+
 }

@@ -19,13 +19,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AddOpskrift extends DialogFragment implements View.OnClickListener {
@@ -46,11 +44,13 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
     TextView filepath_name;
     Button uploadImg, opret_knap, soeg_billede, tilfoejing;
-    EditText t_varighed, t_navn;
-    AutoCompleteTextView t_genre, t_kategori;
+    EditText t_varighed, t_navn, t_ingrediens1, t_mængde1, t_ingrediens2, t_mængde2, t_ingrediens3, t_mængde3;
+    AutoCompleteTextView t_genre, t_kategori, et_ingredienser1, et_genre;
+
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
 
+    private int countupMaal = 0, countupIng = 0, countupmMngde = 0;
 
 
     private int id = 0;
@@ -60,32 +60,30 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
+
+        // // // // // //
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
-
-
         ingrediens_layout = (LinearLayout) view.findViewById(R.id.ingrediens_layout);
-
         måleenhedSpinner1 = (Spinner) view.findViewById(R.id.spinner1);
         måleenhedSpinner2 = (Spinner) view.findViewById(R.id.spinner2);
         måleenhedSpinner3 = (Spinner) view.findViewById(R.id.spinner3);
-
-        måleenhedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.måleenheder, android.R.layout.simple_spinner_item);
-        måleenhedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        måleenhedSpinner1.setAdapter(måleenhedAdapter);
-        måleenhedSpinner2.setAdapter(måleenhedAdapter);
-        måleenhedSpinner3.setAdapter(måleenhedAdapter);
-
-
-
+        t_ingrediens1 = (EditText) view.findViewById(R.id.et_ingredienser1);
+        t_ingrediens2 = (EditText) view.findViewById(R.id.et_ingredienser2);
+        t_ingrediens3 = (EditText) view.findViewById(R.id.et_ingredienser3);
+        t_mængde1 = (EditText) view.findViewById(R.id.et_mængde1);
+        t_mængde2 = (EditText) view.findViewById(R.id.et_mængde2);
+        t_mængde3 = (EditText) view.findViewById(R.id.et_mængde3);
         uploadImg = (Button) view.findViewById(R.id.billede_button);
-
         t_varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
         t_navn = (EditText) view.findViewById(R.id.opskrift_navn);
         t_genre = (AutoCompleteTextView) view.findViewById(R.id.opskrift_genre);
         t_kategori = (AutoCompleteTextView) view.findViewById(R.id.opskrift_kategori);
-
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
+        et_ingredienser1 = view.findViewById(R.id.et_ingredienser1);
+        et_genre = view.findViewById(R.id.opskrift_genre);
+
+
+        // // // // // //
 
         opret_knap = (Button) view.findViewById(R.id.opret_knap);
         opret_knap.setOnClickListener(this);
@@ -96,11 +94,23 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         tilfoejing = (Button) view.findViewById(R.id.btn_tilføj_ingrediens);
         tilfoejing.setOnClickListener(this);
 
-        AutoCompleteTextView et_ingredienser1 = view.findViewById(R.id.et_ingredienser1);
+        // // // // // //
+
+        // // // // // //  Kalde og sætte adaptere
+
+        måleenhedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.måleenheder, android.R.layout.simple_spinner_item);
+        måleenhedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        måleenhedSpinner1.setAdapter(måleenhedAdapter);
+        måleenhedSpinner2.setAdapter(måleenhedAdapter);
+        måleenhedSpinner3.setAdapter(måleenhedAdapter);
+
+// // // // // //  Lave og sette adapters
+
+
         ArrayAdapter<String> adapter_ingredienser = new ArrayAdapter<String>(getContext(),
                 R.layout.custom_autotextview, R.id.text_view_list_item, INGREDIENSER);
         et_ingredienser1.setAdapter(adapter_ingredienser);
-        AutoCompleteTextView et_genre = view.findViewById(R.id.opskrift_genre);
         ArrayAdapter<String> adapter_genre = new ArrayAdapter<String>(getContext(),
                 R.layout.custom_autotextview, R.id.text_view_list_item, GENRE);
         et_genre.setAdapter(adapter_genre);
@@ -110,46 +120,84 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 R.layout.custom_autotextview, R.id.text_view_list_item, KATEGORI);
         et_kategori.setAdapter(adapter_kategori);
 
+        // // // // // //
+
         return view;
     }
 
 
+// Metoderne kommer herunder.
 
+    // // // // // //
     private void Tilfoejopskrift(Context context) {
 
-         ArrayList<Opskrifter> opskrifters  = MainActivity.lokale_opskrifters;
-        Opskrifter no = new Opskrifter();
-        no.ID = 0;
+        int id = (int) (Math.random() + 1);
+        addIngInList(id, context);
+        Opskrifter no = new Opskrifter(id, t_navn.getText().toString());
+    /*   no.ID = (int )(Math. random() + 1);
         no.kategori = t_kategori.getText().toString();
         no.genre = t_genre.getText().toString();
         no.navn = t_navn.getText().toString();
-
-
-        opskrifters.add(no);
+    */
+        MainActivity.lokale_opskrifters.add(no);
 
 
         SharedPreferences appSharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(context.getApplicationContext());
         SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(opskrifters);
+        String json = gson.toJson(MainActivity.lokale_opskrifters);
         prefsEditor.putString("user", json);
         prefsEditor.commit();
 
+
         dismiss();
-        
     }
 
+    // // // // // //
 
+
+    private void addIngInList(int opskriftID, Context context) {
+        ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
+
+        if (t_ingrediens1.getText().toString() != null || t_mængde1.getText().toString() != null) {
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), 1, 1, opskriftID));
+        }
+
+        if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1 /* Integer.parseInt(t_mængde2.getText().toString()) */, 1, opskriftID));
+
+        }
+        if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), 1/* Integer.parseInt(t_mængde3.getText().toString())*/, 1, opskriftID));
+
+        }
+
+// Her tilføjes der til sharedpreferences
+        SharedPreferences appSharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(MainActivity.lokale_ingredienser);
+        prefsEditor.putString("ingredienser", json);
+        prefsEditor.commit();
+
+
+    }
+
+    // // // // // //  Denne metoder er hjælp til at finde ibllede fra tlf
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGES && data != null) {
             Uri selectedImage = data.getData();
             filepath_name.setText(selectedImage.getPath());
+
         }
     }
 
+
+    // // // // // //  on click
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -159,8 +207,8 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 break;
 
             case R.id.opret_knap:
-Tilfoejopskrift(this.getContext());
-break;
+                Tilfoejopskrift(this.getContext());
+                break;
 
 
             case R.id.btn_tilføj_ingrediens:
@@ -174,6 +222,8 @@ break;
 
         }
     }
+    // // // // // //  Nedenstående metoder tilføjer et nyt felt af ingrediens i opret opskrift
+
 
     private void CreateIngrediens() {
 
@@ -200,13 +250,21 @@ break;
         ed_ingrediens.setLayoutParams(param);
         ed_mængde.setLayoutParams(param);
 
+
+        spinner_maal.setId(countupMaal + 1);
+        ed_ingrediens.setId(countupIng + 11);
+        ed_mængde.setId(countupmMngde + 111);
+
         ny_layout.addView(ed_ingrediens);
         ny_layout.addView(ed_mængde);
         ny_layout.addView(spinner_maal);
 
-ingrediens_layout.addView(ny_layout);
+        ingrediens_layout.addView(ny_layout);
+
 
     }
+
+
 }
 
 

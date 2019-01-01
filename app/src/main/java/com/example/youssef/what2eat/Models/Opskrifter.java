@@ -1,11 +1,12 @@
 package com.example.youssef.what2eat.Models;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
-import java.io.Serializable;
+import com.example.youssef.what2eat.MainActivity;
 
-public class Opskrifter implements Serializable {
+import java.util.ArrayList;
+
+public class Opskrifter {
 
     public int ID;
     public String navn;
@@ -15,7 +16,21 @@ public class Opskrifter implements Serializable {
     public String kategori;
     public int  rating;
     public Bitmap billede;
+    public ArrayList<Ingredienser> ingredienser_list;
     public String beskrivelse;
+
+    public Opskrifter(int ID, String navn) {
+        this.ID = ID;
+        this.navn = navn;
+        this.ingredienser_list = new ArrayList<Ingredienser>();
+        for(Ingredienser ingre:MainActivity.lokale_ingredienser)
+        {
+            if(ingre.foreign_opskrift == ID)
+            {
+                this.ingredienser_list.add(ingre);
+            }
+        }
+    }
 
     public int getID() { return ID; }
 
@@ -34,4 +49,6 @@ public class Opskrifter implements Serializable {
     public Bitmap getBillede() { return billede; }
 
     public String getBeskrivelse() { return beskrivelse; }
+
+   public ArrayList<Ingredienser> getIngredienser() {return ingredienser_list; }
 }
