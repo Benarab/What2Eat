@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.youssef.what2eat.Adapter.IngrediensAdapter;
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
@@ -45,6 +46,7 @@ public class What2EatFragment extends Fragment {
     FloatingActionButton search_button;
     ArrayList<Opskrifter> resultat_opskrifter;
     TextView tv_ingrediens;
+    ImageButton slet_button;
 
     @Nullable
     @Override
@@ -61,6 +63,9 @@ public class What2EatFragment extends Fragment {
         adapterOpskrift = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
         adapterSøgeResultater = new OpskrifterAdapter(getContext(), resultat_opskrifter);
         søgeResultaterList.setAdapter(adapterOpskrift);
+        slet_button = (ImageButton) view.findViewById(R.id.btn_slet_ingrediens);
+
+
 
         et_igredienser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
@@ -71,8 +76,10 @@ public class What2EatFragment extends Fragment {
             }
         });
 
-        adapter = new ArrayAdapter<String>(getContext(), R.layout.custom_ingredienser_list, MainActivity.søge_ingredienser);
+        adapter = new IngrediensAdapter(getContext(), R.layout.custom_ingredienser_list, MainActivity.søge_ingredienser);
         lv_what2eat.setAdapter(adapter);
+
+
         btn_add_ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +110,7 @@ public class What2EatFragment extends Fragment {
                         }
                     }
                 }
+                
 
 
                 Log.d("Resultat: ", "" + resultat_opskrifter);
