@@ -42,7 +42,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_star_yellow"
                 android:paddingRight="5dp"/>
 
@@ -138,12 +138,16 @@
             android:textColor="@color/Black"
             android:textSize="16dp"/>
 
-       <ListView
-           android:id="@+id/lv_Ingredienser"
-           android:dividerHeight="0dp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_weight="5"></ListView>
+
+            <com.example.youssef.what2eat.CustomLayout.NonScrollListView
+
+        android:id="@+id/lv_Ingredienser"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+
+                />
+
 
         <TextView
             android:layout_width="match_parent"

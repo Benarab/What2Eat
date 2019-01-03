@@ -51,4 +51,11 @@ public class Opskrifter {
     public String getBeskrivelse() { return beskrivelse; }
 
    public ArrayList<Ingredienser> getIngredienser() {return ingredienser_list; }
+
+
+
+    @Override
+    public String toString() {
+        return getNavn();
+    }
 }

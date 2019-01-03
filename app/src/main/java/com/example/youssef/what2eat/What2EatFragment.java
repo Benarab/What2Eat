@@ -110,14 +110,23 @@ public class What2EatFragment extends Fragment {
                         }
                     }
                 }
-                
 
 
-                Log.d("Resultat: ", "" + resultat_opskrifter);
+                if (resultat_opskrifter.size() == 0)
+                {
+                    Toast.makeText(getContext(), "Ingen opskrifter fundet med disse ingredienser", Toast.LENGTH_SHORT).show();
+
+                }
+
+                else
+                {
+                    MainActivity.søge_ingredienser.clear();
                 //search_button.setVisibility(view.GONE);
                 adapterOpskrift.notifyDataSetChanged();
                 søgeResultaterList.setAdapter(adapterSøgeResultater);
                 søgeResultaterList.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 

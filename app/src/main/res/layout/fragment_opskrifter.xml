@@ -10,8 +10,9 @@
         android:orientation="horizontal"
         android:background="@color/colorPrimary">
 
-        <AutoCompleteTextView
-            android:id="@+id/id_search_EditText"
+
+        <SearchView
+            android:id="@+id/id_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

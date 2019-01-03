@@ -17,14 +17,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AddOpskrift extends DialogFragment implements View.OnClickListener {
 
@@ -46,7 +49,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     Button uploadImg, opret_knap, soeg_billede, tilfoejing;
     EditText t_varighed, t_navn, t_ingrediens1, t_mængde1, t_ingrediens2, t_mængde2, t_ingrediens3, t_mængde3;
     AutoCompleteTextView t_genre, t_kategori, et_ingredienser1, et_genre;
-
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
 
@@ -130,15 +132,16 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
     // // // // // //
     private void Tilfoejopskrift(Context context) {
+        Random random = new Random();
+        int id = random.nextInt(500);
 
-        int id = (int) (Math.random() + 1);
         addIngInList(id, context);
+
         Opskrifter no = new Opskrifter(id, t_navn.getText().toString());
-    /*   no.ID = (int )(Math. random() + 1);
         no.kategori = t_kategori.getText().toString();
         no.genre = t_genre.getText().toString();
         no.navn = t_navn.getText().toString();
-    */
+
         MainActivity.lokale_opskrifters.add(no);
 
 
@@ -150,7 +153,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         prefsEditor.putString("user", json);
         prefsEditor.commit();
 
-
         dismiss();
     }
 
@@ -161,15 +163,15 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
 
         if (t_ingrediens1.getText().toString() != null || t_mængde1.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), 1, 1, opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), 1, måleenhedSpinner1.getSelectedItem().toString(), opskriftID));
         }
 
         if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1 /* Integer.parseInt(t_mængde2.getText().toString()) */, 1, opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1 , måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
 
         }
         if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), 1/* Integer.parseInt(t_mængde3.getText().toString())*/, 1, opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), 1, måleenhedSpinner3.getSelectedItem().toString(), opskriftID));
 
         }
 
@@ -180,7 +182,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         Gson gson = new Gson();
         String json = gson.toJson(MainActivity.lokale_ingredienser);
         prefsEditor.putString("ingredienser", json);
-        prefsEditor.commit();
+
 
 
     }
@@ -208,6 +210,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
             case R.id.opret_knap:
                 Tilfoejopskrift(this.getContext());
+
                 break;
 
 

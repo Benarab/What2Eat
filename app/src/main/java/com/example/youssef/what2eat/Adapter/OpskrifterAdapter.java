@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.youssef.what2eat.CustomLayout.NonScrollListView;
 import com.example.youssef.what2eat.MainActivity;
 import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
@@ -18,19 +21,28 @@ import com.example.youssef.what2eat.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
 
 
     private Context context;
     private ArrayList<Opskrifter> values;
+    private ArrayList<Opskrifter> list;
 
     public OpskrifterAdapter(Context context, ArrayList<Opskrifter> values) {
         super(context, R.layout.custom_opskrifter_list, values);
 
         this.context = context;
         this.values = values;
+        values = MainActivity.lokale_opskrifters;
+        this.list = new ArrayList<Opskrifter>();
+        this.list.addAll(values);
+
+
+
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,7 +55,7 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         }
 
 
-        values = MainActivity.lokale_opskrifters;
+
 
         ImageView imgOpskrift = (ImageView) row.findViewById(R.id.img_opskrift);
         TextView tvOpskriftnavn = (TextView) row.findViewById(R.id.tv_opskriftNavn);
@@ -52,11 +64,14 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         TextView tvKategori = (TextView) row.findViewById(R.id.tv_kategori);
         TextView tvGenre = (TextView) row.findViewById(R.id.tv_genre);
         TextView tvFremgangsmåde = (TextView) row.findViewById(R.id.tv_fremgangsmåde);
-        ListView Ingredienserliste = (ListView) row.findViewById(R.id.lv_Ingredienser);
+        NonScrollListView Ingredienserliste = (NonScrollListView) row.findViewById(R.id.lv_Ingredienser);
         ArrayList<String> newList = new ArrayList<String>();
 
 
-        Opskrifter item = values.get(position);
+       Opskrifter item = values.get(position);
+
+
+
         Bitmap billede = item.getBillede();
         String navn = item.getNavn();
         int rating = item.getRating();
@@ -65,14 +80,21 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         String genre = item.getGenre();
         String beskrivelse = item.getBeskrivelse();
 
+for (Ingredienser local_inglist: MainActivity.lokale_ingredienser)
+{
+    if (local_inglist.foreign_opskrift == item.ID)
+    {
+        item.ingredienser_list.add(local_inglist);
+    }
+}
 
         if (item.ingredienser_list != null) {
             for (Ingredienser ingredienser : item.getIngredienser()) {
 
-                newList.add(ingredienser.ingrediens_navn + ingredienser.maal + ingredienser.maal_navn);
+                newList.add(ingredienser.ingrediens_navn + ", mængde: " + ingredienser.maal + " " + ingredienser.maal);
             }
         }
-        Ingredienserliste.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.listcell, newList));
+        Ingredienserliste.setAdapter(new OpskriftIngrediensAdapter(getContext(), R.layout.listcell, newList));
 
 
         tvOpskriftnavn.setText(navn);
@@ -85,4 +107,25 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         return row;
     }
 
+   /* public void filter(String charText)
+    {
+        charText = charText.toLowerCase(Locale.getDefault());
+
+        {
+            values.clear();
+            if (charText.length() == 0)
+            {
+                values.addAll(list);
+            }
+            else {
+
+                for (Opskrifter opskrifter: list) {
+                    if (opskrifter.getNavn().toLowerCase(Locale.getDefault()).contains(charText)) ;
+                    values.add(opskrifter);
+
+
+                }
+            }
+            notifyDataSetChanged();
+        }*/
 }
