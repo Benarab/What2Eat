@@ -54,11 +54,11 @@ public class OpskrifterFragment extends Fragment {
 
         });
 
-        ListView lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
+        final ListView lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
         resultater = new ArrayList<Opskrifter>();
         resultater.addAll(MainActivity.lokale_opskrifters);
 
-        OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), resultater);
+        final OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), resultater);
 
         if (resultater != null)
             lvOpskrifter.setAdapter(adapter);

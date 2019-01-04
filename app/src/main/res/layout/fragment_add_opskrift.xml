@@ -38,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textSize="14dp"
                 android:singleLine="true" />
 
             <TextView
@@ -58,6 +59,7 @@
                     android:id="@+id/opskrift_varighed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="14dp"
                     android:layout_weight="1"
                     android:inputType="number" />
 
@@ -67,7 +69,7 @@
                     android:layout_weight="2"
                     android:text="min"
                     android:gravity="center"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="14dp"></TextView>
 
             </LinearLayout>
 
@@ -82,6 +84,7 @@
                 android:id="@+id/opskrift_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14dp"
                 android:completionThreshold="1"
                 android:layout_marginTop="5dp" />
 
@@ -96,6 +99,7 @@
                 android:id="@+id/opskrift_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="14dp"
                 android:completionThreshold="1"
                 android:layout_marginTop="5dp" />
 
@@ -127,7 +131,7 @@
                         android:completionThreshold="1"
                         android:hint="Ingrediens"
                         android:singleLine="true"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:id="@+id/et_mængde1"
@@ -136,7 +140,7 @@
                         android:layout_weight="1"
                         android:hint="Mængde"
                         android:inputType="numberDecimal"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <Spinner
                         android:id="@+id/spinner1"
@@ -161,7 +165,7 @@
                         android:layout_weight="1"
                         android:hint="Indgrediens"
                         android:singleLine="true"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:id="@+id/et_mængde2"
@@ -170,7 +174,7 @@
                         android:layout_weight="1"
                         android:hint="Mængde"
                         android:inputType="numberDecimal"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <Spinner
                         android:id="@+id/spinner2"
@@ -195,7 +199,7 @@
                         android:layout_weight="1"
                         android:hint="Indgrediens"
                         android:singleLine="true"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:id="@+id/et_mængde3"
@@ -204,7 +208,7 @@
                         android:layout_weight="1"
                         android:hint="Mængde"
                         android:inputType="numberDecimal"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <Spinner
                         android:id="@+id/spinner3"
