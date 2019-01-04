@@ -167,7 +167,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         }
 
         if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), Integer.parseInt(t_mængde2.getText().toString()) , måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), Integer.parseInt(t_mængde2.getText().toString()), måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
 
         }
         if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
@@ -182,7 +182,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         Gson gson = new Gson();
         String json = gson.toJson(MainActivity.lokale_ingredienser);
         prefsEditor.putString("ingredienser", json);
-
 
 
     }
@@ -209,20 +208,29 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 break;
 
             case R.id.opret_knap:
-                Tilfoejopskrift(this.getContext());
-
-                break;
-
-
+                if (t_navn.getText().toString().isEmpty() | t_varighed.getText().toString().isEmpty() | t_genre.getText().toString().isEmpty() | t_kategori.getText().toString().isEmpty() | t_ingrediens1.getText().toString().isEmpty() | t_mængde1.getText().toString().isEmpty()){
+                    t_navn.setHint("*");
+                    t_navn.setHintTextColor(getResources().getColor(R.color.Red));
+                    t_varighed.setHint("*");
+                    t_varighed.setHintTextColor(getResources().getColor(R.color.Red));
+                    t_genre.setHint("*");
+                    t_genre.setHintTextColor(getResources().getColor(R.color.Red));
+                    t_kategori.setHint("*");
+                    t_kategori.setHintTextColor(getResources().getColor(R.color.Red));
+                    t_ingrediens1.setHint("*");
+                    t_ingrediens1.setHintTextColor(getResources().getColor(R.color.Red));
+                    t_mængde1.setHint("*");
+                    t_mængde1.setHintTextColor(getResources().getColor(R.color.Red));
+                } else {
+                    Tilfoejopskrift(this.getContext());
+                    break;
+                }
             case R.id.btn_tilføj_ingrediens:
-
                 CreateIngrediens();
                 break;
 
-
             default:
                 break;
-
         }
     }
     // // // // // //  Nedenstående metoder tilføjer et nyt felt af ingrediens i opret opskrift
