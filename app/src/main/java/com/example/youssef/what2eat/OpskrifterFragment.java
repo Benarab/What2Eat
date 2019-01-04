@@ -41,8 +41,7 @@ import java.util.List;
 public class OpskrifterFragment extends Fragment {
 
     public ArrayList<Opskrifter> resultater;
-
-   public ListView lvOpskrifter;
+    public ListView lvOpskrifter;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
@@ -60,7 +59,7 @@ public class OpskrifterFragment extends Fragment {
 
         });
 
-         lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
+        lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
         resultater = new ArrayList<Opskrifter>();
         resultater.addAll(MainActivity.lokale_opskrifters);
 
@@ -69,7 +68,6 @@ public class OpskrifterFragment extends Fragment {
         if (resultater != null)
             lvOpskrifter.setAdapter(adapter);
         registerForContextMenu(lvOpskrifter);
-
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -107,7 +105,6 @@ public class OpskrifterFragment extends Fragment {
         });
 
 
-
         FloatingActionButton addOpskrift = (FloatingActionButton) view.findViewById(R.id.addOpskrift);
         addOpskrift.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,17 +115,14 @@ public class OpskrifterFragment extends Fragment {
             }
 
 
-
         });
 
 
-
         return view;
-            }
+    }
 
 
-    public void removeOpskrift(Opskrifter obj)
-    {
+    public void removeOpskrift(Opskrifter obj) {
         MainActivity.lokale_opskrifters.remove(obj);
         OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
         lvOpskrifter.setAdapter(adapter);
@@ -142,8 +136,7 @@ public class OpskrifterFragment extends Fragment {
         prefsEditor.commit();
     }
 
-    public void addToPlan(Opskrifter obj)
-    {
+    public void addToPlan(Opskrifter obj) {
         MainActivity.lokale_fremtidigeopskrifter.add(obj);
 
         SharedPreferences appSharedPrefs = PreferenceManager
@@ -175,7 +168,7 @@ public class OpskrifterFragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Opskrifter obj = (Opskrifter) lvOpskrifter.getItemAtPosition(info.position);
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case 0:
                 addToPlan(obj);
                 return true;
@@ -190,8 +183,6 @@ public class OpskrifterFragment extends Fragment {
         return super.onContextItemSelected(item);
 
     }
-
-
 
 }
 
