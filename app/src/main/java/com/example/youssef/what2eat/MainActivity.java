@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Opskrifter> lokale_opskrifters = new ArrayList<>();
     public static ArrayList<Ingredienser> lokale_ingredienser = new ArrayList<>();
     public static ArrayList<String> søge_ingredienser = new ArrayList<>();
+    public static ArrayList<Opskrifter> lokale_fremtidigeopskrifter = new ArrayList<>();
 
 
     @Override
@@ -81,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
                 .getDefaultSharedPreferences(context.getApplicationContext());
         Gson gson = new Gson();
 
-
+        String frJson = appSharedPrefs.getString("fremtidige", "");
         String opJson = appSharedPrefs.getString("user", "");
         String inJson = appSharedPrefs.getString("ingredienser", "");
 
-
+        ArrayList<Opskrifter> fr;
         ArrayList<Opskrifter> op;
         ArrayList<Ingredienser> in;
 
@@ -94,12 +95,15 @@ public class MainActivity extends AppCompatActivity {
         }.getType());
         in = gson.fromJson(inJson, new TypeToken<ArrayList<Ingredienser>>() {
         }.getType());
+        fr = gson.fromJson(inJson, new TypeToken<ArrayList<Opskrifter>>() {
+        }.getType());
 
         if (op != null)
             MainActivity.lokale_opskrifters = op;
         if (in != null)
             MainActivity.lokale_ingredienser = in;
-
+        if (fr != null)
+            MainActivity.lokale_fremtidigeopskrifter = fr;
 
     }
 }

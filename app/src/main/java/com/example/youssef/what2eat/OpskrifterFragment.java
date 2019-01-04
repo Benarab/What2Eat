@@ -3,9 +3,11 @@ package com.example.youssef.what2eat;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
@@ -27,9 +30,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.youssef.what2eat.Adapter.IngrediensAdapter;
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
 import com.example.youssef.what2eat.Models.Opskrifter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +42,8 @@ import java.util.List;
 public class OpskrifterFragment extends Fragment {
 
     public ArrayList<Opskrifter> resultater;
+public ListView lvOpskrifter;
+
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
@@ -54,7 +61,7 @@ public class OpskrifterFragment extends Fragment {
 
         });
 
-        ListView lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
+        lvOpskrifter = (ListView) view.findViewById(R.id.lv_Opskrifter);
         resultater = new ArrayList<Opskrifter>();
         resultater.addAll(MainActivity.lokale_opskrifters);
 
@@ -63,13 +70,6 @@ public class OpskrifterFragment extends Fragment {
         if (resultater != null)
             lvOpskrifter.setAdapter(adapter);
         registerForContextMenu(lvOpskrifter);
-
-        lvOpskrifter.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return false;
-            }
-        });
 
 
 
@@ -127,9 +127,73 @@ public class OpskrifterFragment extends Fragment {
         return view;
             }
 
+    public void removeOpskrift(Opskrifter obj)
+    {
+        MainActivity.lokale_opskrifters.remove(obj);
+        OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
+        lvOpskrifter.setAdapter(adapter);
+
+        SharedPreferences appSharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(getContext().getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(MainActivity.lokale_opskrifters);
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+    }
+
+    public void addToPlan(Opskrifter obj)
+    {
+        MainActivity.lokale_fremtidigeopskrifter.add(obj);
+
+        SharedPreferences appSharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(getContext().getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
+        prefsEditor.putString("fremtidige", json);
+        prefsEditor.commit();
+    }
+
+      @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == R.id.lv_Opskrifter) {
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            Opskrifter obj = (Opskrifter) lvOpskrifter.getItemAtPosition(acmi.position);
+
+            menu.setHeaderTitle(obj.navn);
+
+
+            menu.add(0, 0, Menu.NONE, "Gem til fremtidige");
+            menu.add(0, 1, Menu.NONE, "Opdater");
+            menu.add(0, 2, Menu.NONE, "Slet");
+
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Opskrifter obj = (Opskrifter) lvOpskrifter.getItemAtPosition(info.position);
+        switch(item.getItemId()) {
+            case 0:
+                addToPlan(obj);
+                return true;
+            case 1:
+                // edit stuff here
+                return true;
+            case 2:
+                removeOpskrift(obj);
+                return true;
+
+        }
+                return super.onContextItemSelected(item);
+
+    }
+
+
 
 
 }
-
 
 
