@@ -26,9 +26,11 @@ import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
@@ -40,13 +42,24 @@ import java.util.List;
 
 public class OpskrifterFragment extends Fragment {
 
+<<<<<<< HEAD
     public ArrayList<Opskrifter> resultater;
     public ListView lvOpskrifter;
+=======
+    ArrayList<Opskrifter> resultater;
+    ListView lvOpskrifter;
+  //  DatePicker datePicker;
+   // Button tilføj_button;
+
+>>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
         FloatingActionButton showDialog = (FloatingActionButton) view.findViewById(R.id.fab_filter);
         SearchView searchView = (SearchView) view.findViewById(R.id.id_search);
+        // datePicker = (DatePicker) view.findViewById(R.id.datepicker_id);
+        // tilføj_button = (Button) view.findViewById(R.id.tilføj_datoknap) ;
+
 
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +135,13 @@ public class OpskrifterFragment extends Fragment {
     }
 
 
+<<<<<<< HEAD
     public void removeOpskrift(Opskrifter obj) {
+=======
+    public void removeOpskrift(Opskrifter obj)
+    {
+
+>>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
         MainActivity.lokale_opskrifters.remove(obj);
         OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
         lvOpskrifter.setAdapter(adapter);
@@ -136,6 +155,7 @@ public class OpskrifterFragment extends Fragment {
         prefsEditor.commit();
     }
 
+<<<<<<< HEAD
     public void addToPlan(Opskrifter obj) {
         MainActivity.lokale_fremtidigeopskrifter.add(obj);
 
@@ -146,6 +166,13 @@ public class OpskrifterFragment extends Fragment {
         String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
         prefsEditor.putString("fremtidige", json);
         prefsEditor.commit();
+=======
+    public void addToPlan(Opskrifter obj)
+    {
+        popup_plan dialog = new popup_plan();
+        dialog.Opskrift_object = obj;
+        dialog.show(getFragmentManager(), "popup_plan");
+>>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
     }
 
     @Override
