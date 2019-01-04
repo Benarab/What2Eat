@@ -163,15 +163,15 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
 
         if (t_ingrediens1.getText().toString() != null || t_mængde1.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), 1, måleenhedSpinner1.getSelectedItem().toString(), opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), Integer.parseInt(t_mængde1.getText().toString()), måleenhedSpinner1.getSelectedItem().toString(), opskriftID));
         }
 
         if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1 , måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), Integer.parseInt(t_mængde2.getText().toString()) , måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
 
         }
         if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), 1, måleenhedSpinner3.getSelectedItem().toString(), opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), Integer.parseInt(t_mængde3.getText().toString()), måleenhedSpinner3.getSelectedItem().toString(), opskriftID));
 
         }
 

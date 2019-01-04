@@ -49,6 +49,17 @@ public class IngrediensAdapter extends ArrayAdapter<String> {
                 tt1.setText(p);
             }
 
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.søge_ingredienser.remove(p);
+notifyDataSetChanged();
+
+                }
+            });
+
+
         }
 
         return v;
