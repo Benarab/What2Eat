@@ -26,9 +26,11 @@ import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
@@ -40,14 +42,19 @@ import java.util.List;
 
 public class OpskrifterFragment extends Fragment {
 
-    public ArrayList<Opskrifter> resultater;
+    ArrayList<Opskrifter> resultater;
+    ListView lvOpskrifter;
+  //  DatePicker datePicker;
+   // Button tilføj_button;
 
-   public ListView lvOpskrifter;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
         FloatingActionButton showDialog = (FloatingActionButton) view.findViewById(R.id.fab_filter);
         SearchView searchView = (SearchView) view.findViewById(R.id.id_search);
+        // datePicker = (DatePicker) view.findViewById(R.id.datepicker_id);
+        // tilføj_button = (Button) view.findViewById(R.id.tilføj_datoknap) ;
+
 
         showDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +136,7 @@ public class OpskrifterFragment extends Fragment {
 
     public void removeOpskrift(Opskrifter obj)
     {
+
         MainActivity.lokale_opskrifters.remove(obj);
         OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
         lvOpskrifter.setAdapter(adapter);
@@ -144,15 +152,9 @@ public class OpskrifterFragment extends Fragment {
 
     public void addToPlan(Opskrifter obj)
     {
-        MainActivity.lokale_fremtidigeopskrifter.add(obj);
-
-        SharedPreferences appSharedPrefs = PreferenceManager
-                .getDefaultSharedPreferences(getContext().getApplicationContext());
-        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
-        prefsEditor.putString("fremtidige", json);
-        prefsEditor.commit();
+        popup_plan dialog = new popup_plan();
+        dialog.Opskrift_object = obj;
+        dialog.show(getFragmentManager(), "popup_plan");
     }
 
     @Override
