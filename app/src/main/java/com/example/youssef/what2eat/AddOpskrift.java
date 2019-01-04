@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.youssef.what2eat.Adapter.OpskrifterAdapter;
 import com.example.youssef.what2eat.Models.Ingredienser;
@@ -142,6 +141,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         no.kategori = t_kategori.getText().toString();
         no.genre = t_genre.getText().toString();
         no.navn = t_navn.getText().toString();
+
         MainActivity.lokale_opskrifters.add(no);
 
 
@@ -167,7 +167,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         }
 
         if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1, måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), 1 , måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
 
         }
         if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
@@ -182,6 +182,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         Gson gson = new Gson();
         String json = gson.toJson(MainActivity.lokale_ingredienser);
         prefsEditor.putString("ingredienser", json);
+
 
 
     }
@@ -208,28 +209,16 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                 break;
 
             case R.id.opret_knap:
-                if (t_navn.getText().toString().isEmpty() | t_varighed.getText().toString().isEmpty() | t_genre.getText().toString().isEmpty() | t_kategori.getText().toString().isEmpty() | t_varighed.getText().toString().isEmpty() | t_ingrediens1.getText().toString().isEmpty() | t_mængde1.getText().toString().isEmpty()) {
-                    t_navn.setHint("Obligatorisk");
-                    t_navn.setHintTextColor(getResources().getColor(R.color.Red));
-                    t_varighed.setHint("Obligatorisk");
-                    t_varighed.setHintTextColor(getResources().getColor(R.color.Red));
-                    t_genre.setHint("Obligatiorisk");
-                    t_genre.setHintTextColor(getResources().getColor(R.color.Red));
-                    t_kategori.setHint("Obligatorisk");
-                    t_kategori.setHintTextColor(getResources().getColor(R.color.Red));
-                    t_ingrediens1.setHint("Obligatorisk");
-                    t_ingrediens1.setHintTextColor(getResources().getColor(R.color.Red));
-                    t_mængde1.setHint("Obligatorisk");
-                    t_mængde1.setHintTextColor(getResources().getColor(R.color.Red));
-                    break;
-                } else {
-                    Tilfoejopskrift(this.getContext());
-                    break;
-                }
+                Tilfoejopskrift(this.getContext());
+
+                break;
+
 
             case R.id.btn_tilføj_ingrediens:
+
                 CreateIngrediens();
                 break;
+
 
             default:
                 break;
