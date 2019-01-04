@@ -47,7 +47,7 @@ public class FremtidigeOpskrifterAdapter extends ArrayAdapter<Opskrifter> {
 
 
             et_navn.setText(p.navn);
-         //   et_tid.setText(p.varighed);
+           // et_tid.setText(p.varighed);
 
 
         }

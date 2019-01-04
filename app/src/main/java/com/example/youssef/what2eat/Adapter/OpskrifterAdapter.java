@@ -80,18 +80,11 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         String genre = item.getGenre();
         String beskrivelse = item.getBeskrivelse();
 
-for (Ingredienser local_inglist: MainActivity.lokale_ingredienser)
-{
-    if (local_inglist.foreign_opskrift == item.ID)
-    {
-        item.ingredienser_list.add(local_inglist);
-    }
-}
 
         if (item.ingredienser_list != null) {
             for (Ingredienser ingredienser : item.getIngredienser()) {
 
-                newList.add(ingredienser.ingrediens_navn + ", mængde: " + ingredienser.maal + " " + ingredienser.maal);
+                newList.add(ingredienser.ingrediens_navn + ", mængde: " + ingredienser.ingrediens_antal + " " + ingredienser.maal);
             }
         }
         Ingredienserliste.setAdapter(new OpskriftIngrediensAdapter(getContext(), R.layout.listcell, newList));
