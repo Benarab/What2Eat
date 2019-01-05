@@ -50,8 +50,6 @@ public class FremtidigeOpskrifterAdapter extends ArrayAdapter<Opskrifter> {
             et_dato.setText(p.tilføjelsesdato);
 
             // et_tid.setText(p.varighed);
-
-
         }
 
         return v;

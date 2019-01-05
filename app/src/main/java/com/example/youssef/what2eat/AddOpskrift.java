@@ -141,9 +141,9 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         no.kategori = t_kategori.getText().toString();
         no.genre = t_genre.getText().toString();
         no.navn = t_navn.getText().toString();
+        no.varighed = Integer.parseInt(t_varighed.getText().toString());
 
         MainActivity.lokale_opskrifters.add(no);
-
 
         SharedPreferences appSharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(context.getApplicationContext());

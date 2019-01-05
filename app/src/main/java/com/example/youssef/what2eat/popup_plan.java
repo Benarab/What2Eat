@@ -40,17 +40,43 @@ public class popup_plan extends DialogFragment {
             public void onClick(View v) {
 
                 if (datePicker.getDayOfMonth() != 0) {
-                    int day = datePicker.getDayOfMonth();
-                    int year = datePicker.getYear();
-                    int month = datePicker.getMonth() + 1;
+                    String day =  String.valueOf(datePicker.getDayOfMonth());
+                    String year = String.valueOf(datePicker.getYear());
+                    String month = String.valueOf(datePicker.getMonth() + 1);
 
-                    dato = String.valueOf(day) + " - " + String.valueOf(month) + " - " + String.valueOf(year);
+                    if(month.equals("1")){
+                        month = "Januar";
+                    } else if (month.equals("2")){
+                        month = "Februar";
+                    } else if (month.equals("3")){
+                        month = "Marts";
+                    } else if (month.equals("4")){
+                        month = "April";
+                    } else if (month.equals("5")){
+                        month = "Maj";
+                    } else if (month.equals("6")){
+                        month = "Juni";
+                    } else if (month.equals("7")){
+                        month = "Juli";
+                    } else if (month.equals("8")){
+                        month = "August";
+                    } else if (month.equals("9")){
+                        month = "September";
+                    } else if (month.equals("10")){
+                        month = "Oktober";
+                    } else if (month.equals("11")){
+                        month = "November";
+                    } else if (month.equals("12")){
+                        month = "December";
+                    }
 
+                    dato = String.valueOf(day) + ". " + String.valueOf(month) + " " + String.valueOf(year);
 
                     Opskrift_object.tilføjelsesdato = dato;
 
-
                     MainActivity.lokale_fremtidigeopskrifter.add(Opskrift_object);
+
+                    Toast.makeText(getContext(), "Opskriften er blevet tilføjet til din madplan!", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences appSharedPrefs = PreferenceManager
                             .getDefaultSharedPreferences(getContext().getApplicationContext());

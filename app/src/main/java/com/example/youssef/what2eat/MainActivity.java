@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }.getType());
         in = gson.fromJson(inJson, new TypeToken<ArrayList<Ingredienser>>() {
         }.getType());
-        fr = gson.fromJson(inJson, new TypeToken<ArrayList<Opskrifter>>() {
+        fr = gson.fromJson(frJson, new TypeToken<ArrayList<Opskrifter>>() {
         }.getType());
 
         if (op != null)

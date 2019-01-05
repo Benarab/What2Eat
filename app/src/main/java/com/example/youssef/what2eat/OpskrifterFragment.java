@@ -137,17 +137,11 @@ public class OpskrifterFragment extends Fragment {
         prefsEditor.commit();
     }
 
-    public void addToPlan(Opskrifter obj) {
-        MainActivity.lokale_fremtidigeopskrifter.add(obj);
-
-        SharedPreferences appSharedPrefs = PreferenceManager
-                .getDefaultSharedPreferences(getContext().getApplicationContext());
-        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
-        prefsEditor.putString("fremtidige", json);
-        prefsEditor.commit();
-
+    public void addToPlan(Opskrifter obj)
+    {
+        popup_plan dialog = new popup_plan();
+        dialog.Opskrift_object = obj;
+        dialog.show(getFragmentManager(), "popup_plan");
     }
 
     @Override
@@ -160,7 +154,7 @@ public class OpskrifterFragment extends Fragment {
             menu.setHeaderTitle(obj.navn);
 
 
-            menu.add(0, 0, Menu.NONE, "Gem til fremtidige");
+            menu.add(0, 0, Menu.NONE, "Tilføj til plan");
             menu.add(0, 1, Menu.NONE, "Opdater");
             menu.add(0, 2, Menu.NONE, "Slet");
 
