@@ -38,9 +38,6 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         values = MainActivity.lokale_opskrifters;
         this.list = new ArrayList<Opskrifter>();
         this.list.addAll(values);
-
-
-
     }
 
 

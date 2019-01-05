@@ -170,7 +170,6 @@ public class OpskrifterFragment extends Fragment {
                 addToPlan(obj);
                 return true;
             case 1:
-                // edit stuff here
                 return true;
             case 2:
                 removeOpskrift(obj);

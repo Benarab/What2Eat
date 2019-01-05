@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     AutoCompleteTextView t_genre, t_kategori, et_ingredienser1, et_genre;
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
+    ListView lvOpskrifter;
 
     private int countupMaal = 0, countupIng = 0, countupmMngde = 0;
 
@@ -63,7 +65,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_opskrift, container, false);
 
-        // // // // // //
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
         ingrediens_layout = (LinearLayout) view.findViewById(R.id.ingrediens_layout);
         måleenhedSpinner1 = (Spinner) view.findViewById(R.id.spinner1);
@@ -83,6 +84,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         filepath_name = (TextView) view.findViewById((R.id.billede_path));
         et_ingredienser1 = view.findViewById(R.id.et_ingredienser1);
         et_genre = view.findViewById(R.id.opskrift_genre);
+        lvOpskrifter = view.findViewById(R.id.lv_Opskrifter);
 
 
         // // // // // //
@@ -156,8 +158,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         dismiss();
     }
 
-    // // // // // //
-
 
     public void addIngInList(int opskriftID, Context context) {
         ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
@@ -192,7 +192,6 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         if (requestCode == RESULT_LOAD_IMAGES && data != null) {
             Uri selectedImage = data.getData();
             filepath_name.setText(selectedImage.getPath());
-
         }
     }
 
