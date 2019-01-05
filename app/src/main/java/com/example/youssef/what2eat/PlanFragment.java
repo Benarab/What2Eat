@@ -57,7 +57,7 @@ public class PlanFragment extends Fragment {
         SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
-        prefsEditor.putString("user", json);
+        prefsEditor.putString("fremtidige", json);
         prefsEditor.commit();
     }
 

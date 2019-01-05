@@ -162,17 +162,16 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     private void addIngInList(int opskriftID, Context context) {
         ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
 
-        if (t_ingrediens1.getText().toString() != null || t_mængde1.getText().toString() != null) {
+        if (! t_ingrediens1.getText().toString().isEmpty() && ! t_mængde1.getText().toString().isEmpty()) {
             MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens1.getText().toString(), Integer.parseInt(t_mængde1.getText().toString()), måleenhedSpinner1.getSelectedItem().toString(), opskriftID));
         }
 
-        if (t_ingrediens2.getText().toString() != null || t_mængde2.getText().toString() != null) {
+        if (! t_ingrediens2.getText().toString().isEmpty() && ! t_mængde2.getText().toString().isEmpty()) {
             MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens2.getText().toString(), Integer.parseInt(t_mængde2.getText().toString()), måleenhedSpinner2.getSelectedItem().toString(), opskriftID));
-
         }
-        if (t_ingrediens3.getText().toString() != null || t_mængde3.getText().toString() != null) {
-            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), Integer.parseInt(t_mængde3.getText().toString()), måleenhedSpinner3.getSelectedItem().toString(), opskriftID));
 
+        if (! t_ingrediens3.getText().toString().isEmpty() && ! t_mængde3.getText().toString().isEmpty()) {
+            MainActivity.lokale_ingredienser.add(new Ingredienser(t_ingrediens3.getText().toString(), Integer.parseInt(t_mængde3.getText().toString()), måleenhedSpinner3.getSelectedItem().toString(), opskriftID));
         }
 
 // Her tilføjes der til sharedpreferences
@@ -221,6 +220,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
                     t_ingrediens1.setHintTextColor(getResources().getColor(R.color.Red));
                     t_mængde1.setHint("*");
                     t_mængde1.setHintTextColor(getResources().getColor(R.color.Red));
+                    break;
                 } else {
                     Tilfoejopskrift(this.getContext());
                     break;

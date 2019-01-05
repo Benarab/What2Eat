@@ -42,16 +42,10 @@ import java.util.List;
 
 public class OpskrifterFragment extends Fragment {
 
-<<<<<<< HEAD
     public ArrayList<Opskrifter> resultater;
     public ListView lvOpskrifter;
-=======
-    ArrayList<Opskrifter> resultater;
-    ListView lvOpskrifter;
-  //  DatePicker datePicker;
-   // Button tilføj_button;
-
->>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
+    //  DatePicker datePicker;
+    // Button tilføj_button;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_opskrifter, container, false);
@@ -134,14 +128,8 @@ public class OpskrifterFragment extends Fragment {
         return view;
     }
 
-
-<<<<<<< HEAD
     public void removeOpskrift(Opskrifter obj) {
-=======
-    public void removeOpskrift(Opskrifter obj)
-    {
 
->>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
         MainActivity.lokale_opskrifters.remove(obj);
         OpskrifterAdapter adapter = new OpskrifterAdapter(getContext(), MainActivity.lokale_opskrifters);
         lvOpskrifter.setAdapter(adapter);
@@ -155,7 +143,6 @@ public class OpskrifterFragment extends Fragment {
         prefsEditor.commit();
     }
 
-<<<<<<< HEAD
     public void addToPlan(Opskrifter obj) {
         MainActivity.lokale_fremtidigeopskrifter.add(obj);
 
@@ -166,17 +153,12 @@ public class OpskrifterFragment extends Fragment {
         String json = gson.toJson(MainActivity.lokale_fremtidigeopskrifter);
         prefsEditor.putString("fremtidige", json);
         prefsEditor.commit();
-=======
-    public void addToPlan(Opskrifter obj)
-    {
-        popup_plan dialog = new popup_plan();
-        dialog.Opskrift_object = obj;
-        dialog.show(getFragmentManager(), "popup_plan");
->>>>>>> 52ff433c753bc7f28c7eff66164dc5d717a547f3
+
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo
+            menuInfo) {
         if (v.getId() == R.id.lv_Opskrifter) {
             AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
             Opskrifter obj = (Opskrifter) lvOpskrifter.getItemAtPosition(acmi.position);
@@ -211,8 +193,5 @@ public class OpskrifterFragment extends Fragment {
 
     }
 
+
 }
-
-
-
-

@@ -18,6 +18,7 @@ public class Opskrifter {
     public Bitmap billede;
     public ArrayList<Ingredienser> ingredienser_list;
     public String beskrivelse;
+    public String fremgangsmåde;
 
     public Opskrifter(int ID, String navn) {
         this.ID = ID;
@@ -50,7 +51,9 @@ public class Opskrifter {
 
     public String getBeskrivelse() { return beskrivelse; }
 
-   public ArrayList<Ingredienser> getIngredienser() {return ingredienser_list; }
+    public String getFremgangsmåde() { return fremgangsmåde; }
+
+    public ArrayList<Ingredienser> getIngredienser() {return ingredienser_list; }
 
 
 
