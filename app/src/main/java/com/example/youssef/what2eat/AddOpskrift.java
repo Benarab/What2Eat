@@ -131,7 +131,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 // Metoderne kommer herunder.
 
     // // // // // //
-    private void Tilfoejopskrift(Context context) {
+    public void Tilfoejopskrift(Context context) {
         Random random = new Random();
         int id = random.nextInt(500);
 
@@ -159,7 +159,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     // // // // // //
 
 
-    private void addIngInList(int opskriftID, Context context) {
+    public void addIngInList(int opskriftID, Context context) {
         ArrayList<Ingredienser> nyliste = new ArrayList<Ingredienser>();
 
         if (! t_ingrediens1.getText().toString().isEmpty() && ! t_mængde1.getText().toString().isEmpty()) {
@@ -236,7 +236,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
     // // // // // //  Nedenstående metoder tilføjer et nyt felt af ingrediens i opret opskrift
 
 
-    private void CreateIngrediens() {
+    public void CreateIngrediens() {
 
         ny_layout = new LinearLayout(getContext());
         ny_layout.setOrientation(LinearLayout.HORIZONTAL);

@@ -44,7 +44,8 @@ public class popup_plan extends DialogFragment {
                     int year = datePicker.getYear();
                     int month = datePicker.getMonth() + 1;
 
-                    dato = String.valueOf(day) + "" + String.valueOf(month) + "" + String.valueOf(year);
+                    dato = String.valueOf(day) + " - " + String.valueOf(month) + " - " + String.valueOf(year);
+
 
                     Opskrift_object.tilføjelsesdato = dato;
 

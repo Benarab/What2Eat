@@ -89,20 +89,14 @@ public class OpskrifterFragment extends Fragment {
                 resultater.clear();
 
                 if (newText.length() == 0) {
-                    resultater.addAll(MainActivity.lokale_opskrifters);
-                } else
-
-                {
+                    resultater.addAll(MainActivity.lokale_opskrifters); }
+                    else {
                     resultater.clear();
                     for (Opskrifter o : MainActivity.lokale_opskrifters)
-
+                    { if (o.getNavn().contains(newText))
                     {
-
-                        if (o.getNavn().contains(newText)) {
                             resultater.add(o);
-
                         }
-
                     }
                 }
                 adapter.notifyDataSetChanged();
