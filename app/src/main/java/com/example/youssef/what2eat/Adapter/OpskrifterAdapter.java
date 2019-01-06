@@ -75,7 +75,7 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         int varighed = item.getVarighed();
         String kategori = item.getKategori();
         String genre = item.getGenre();
-        String beskrivelse = item.getBeskrivelse();
+        String fremgangsmåde = item.getFremgangsmåde();
 
 
         if (item.ingredienser_list != null) {
@@ -92,7 +92,7 @@ public class OpskrifterAdapter extends ArrayAdapter<Opskrifter> {
         tvTilberedelsestid.setText(String.valueOf(varighed));
         tvKategori.setText(kategori);
         tvGenre.setText(genre);
-        tvFremgangsmåde.setText(beskrivelse);
+        tvFremgangsmåde.setText(fremgangsmåde);
 
         return row;
     }

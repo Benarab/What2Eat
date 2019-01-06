@@ -96,9 +96,7 @@ public class What2EatFragment extends Fragment {
         });
 
         search_button.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
-
                 for (String søg_ingre : MainActivity.søge_ingredienser) {
                     for (Opskrifter opskrift : MainActivity.lokale_opskrifters) {
                         for (Ingredienser ops_ingre : opskrift.ingredienser_list) {
@@ -106,27 +104,19 @@ public class What2EatFragment extends Fragment {
                                 resultat_opskrifter.add(opskrift);
                                 break;
                             }
-
                         }
                     }
                 }
 
-
-                if (resultat_opskrifter.size() == 0)
-                {
+                if (resultat_opskrifter.size() == 0){
                     Toast.makeText(getContext(), "Ingen opskrifter fundet med disse ingredienser", Toast.LENGTH_SHORT).show();
-
-                }
-
-                else
-                {
+                } else {
                     MainActivity.søge_ingredienser.clear();
                 //search_button.setVisibility(view.GONE);
                 adapterOpskrift.notifyDataSetChanged();
                 søgeResultaterList.setAdapter(adapterSøgeResultater);
                 søgeResultaterList.setVisibility(View.VISIBLE);
                 }
-
             }
         });
 

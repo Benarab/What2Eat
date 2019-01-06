@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -48,7 +49,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
 
     TextView filepath_name;
     Button uploadImg, opret_knap, soeg_billede, tilfoejing;
-    EditText t_varighed, t_navn, t_ingrediens1, t_mængde1, t_ingrediens2, t_mængde2, t_ingrediens3, t_mængde3;
+    EditText t_varighed, t_navn, t_ingrediens1, t_mængde1, t_ingrediens2, t_mængde2, t_ingrediens3, t_mængde3, t_fremgangsmåde;
     AutoCompleteTextView t_genre, t_kategori, et_ingredienser1, et_genre;
     LinearLayout ny_layout, ingrediens_layout;
     ArrayAdapter<CharSequence> måleenhedAdapter;
@@ -76,6 +77,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         t_mængde1 = (EditText) view.findViewById(R.id.et_mængde1);
         t_mængde2 = (EditText) view.findViewById(R.id.et_mængde2);
         t_mængde3 = (EditText) view.findViewById(R.id.et_mængde3);
+        t_fremgangsmåde = (EditText) view.findViewById(R.id.et_fremgangsmåde);
         uploadImg = (Button) view.findViewById(R.id.billede_button);
         t_varighed = (EditText) view.findViewById(R.id.opskrift_varighed);
         t_navn = (EditText) view.findViewById(R.id.opskrift_navn);
@@ -144,6 +146,7 @@ public class AddOpskrift extends DialogFragment implements View.OnClickListener 
         no.genre = t_genre.getText().toString();
         no.navn = t_navn.getText().toString();
         no.varighed = Integer.parseInt(t_varighed.getText().toString());
+        no.fremgangsmåde = t_fremgangsmåde.getText().toString();
 
         MainActivity.lokale_opskrifters.add(no);
 

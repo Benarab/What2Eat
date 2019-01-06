@@ -53,7 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/Black"
-                android:text="-"
                 android:textSize="18dp"/>
 
             </LinearLayout>
@@ -76,7 +75,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/Black"
-                    android:hint="100 min"
                     android:textSize="18dp"/>
 
             </LinearLayout>
@@ -98,7 +96,6 @@
                     android:id="@+id/tv_kategori"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Hovedret"
                     android:textSize="18dp"
                     android:textColor="@color/Black"/>
 
@@ -122,7 +119,6 @@
                     android:id="@+id/tv_genre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="italiansk"
                     android:textSize="18dp"
                     android:textColor="@color/Black"/>
 
@@ -166,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:hint="Løgene hakkes og brunes i olie, kød kommes i og brunes, derefter krydderier, tomater og de revne gulerødder. Evt. lidt ekstra vand. Simre i ca. 15 minutter."/>
+            android:textColor="@color/Black"/>
 
     </LinearLayout>
 

@@ -45,13 +45,11 @@ public class FremtidigeOpskrifterAdapter extends ArrayAdapter<Opskrifter> {
             TextView et_tid= (TextView) v.findViewById(R.id.adapter_tilberedelsestid_et);
             TextView et_dato = (TextView) v.findViewById(R.id.id_dato);
 
-
             et_navn.setText(p.navn);
+            et_tid.setText(String.valueOf(p.varighed + " min"));
             et_dato.setText(p.tilføjelsesdato);
 
-            // et_tid.setText(p.varighed);
         }
-
         return v;
     }
 
