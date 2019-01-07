@@ -40,6 +40,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="14dp"
                 android:inputType="textCapSentences"
+                android:nextFocusForward="@+id/opskrift_varighed"
                 android:singleLine="true" />
 
             <TextView
@@ -62,6 +63,7 @@
                     android:id="@+id/opskrift_varighed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:nextFocusForward="@+id/opskrift_genre"
                     android:textSize="14dp"
                     android:layout_weight="1"
                     android:inputType="number" />
@@ -87,6 +89,9 @@
                 android:id="@+id/opskrift_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/opskrift_kategori"
                 android:textSize="14dp"
                 android:inputType="textCapSentences"
                 android:completionThreshold="1"
@@ -103,7 +108,10 @@
                 android:id="@+id/opskrift_kategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nextFocusForward="@+id/et_ingredienser1"
                 android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:textSize="14dp"
                 android:completionThreshold="1"
                 android:layout_marginTop="5dp" />
@@ -113,6 +121,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Ingredienser:"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -132,6 +142,8 @@
                         android:id="@+id/et_ingredienser1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:nextFocusForward="@+id/et_mængde1"
+                        android:imeOptions="actionNext"
                         android:inputType="textCapSentences"
                         android:layout_weight="1"
                         android:completionThreshold="1"
@@ -168,6 +180,7 @@
                         android:id="@+id/et_ingredienser2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:nextFocusForward="@+id/et_mængde2"
                         android:inputType="textCapSentences"
                         android:layout_weight="1"
                         android:hint="Indgrediens"
