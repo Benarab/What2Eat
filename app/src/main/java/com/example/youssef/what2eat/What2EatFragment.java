@@ -99,18 +99,7 @@ public class What2EatFragment extends Fragment {
 
             public void onClick(View v) {
 
-                for (String søg_ingre : MainActivity.søge_ingredienser) {
-                    for (Opskrifter opskrift : MainActivity.lokale_opskrifters) {
-                        for (Ingredienser ops_ingre : opskrift.ingredienser_list) {
-                            if (søg_ingre.equals(ops_ingre.ingrediens_navn)) {
-                                resultat_opskrifter.add(opskrift);
-                                break;
-                            }
-
-                        }
-                    }
-                }
-
+            getSøgeResultater();
 
                 if (resultat_opskrifter.size() == 0)
                 {
@@ -135,5 +124,22 @@ public class What2EatFragment extends Fragment {
         et_igredienser.setAdapter(adapter_ingredienser);
 
         return view;
+    }
+
+    public void getSøgeResultater()
+    {
+        for (String søg_ingre : MainActivity.søge_ingredienser) {
+            for (Opskrifter opskrift : MainActivity.lokale_opskrifters) {
+                for (Ingredienser ops_ingre : opskrift.ingredienser_list) {
+                    if (søg_ingre.equals(ops_ingre.ingrediens_navn)) {
+                        resultat_opskrifter.add(opskrift);
+                        break;
+                    }
+
+                }
+            }
+        }
+
+
     }
 }

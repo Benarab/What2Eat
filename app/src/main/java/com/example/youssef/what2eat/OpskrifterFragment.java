@@ -86,24 +86,11 @@ public class OpskrifterFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                resultater.clear();
-
-                if (newText.length() == 0) {
-                    resultater.addAll(MainActivity.lokale_opskrifters); }
-                    else {
-                    resultater.clear();
-                    for (Opskrifter o : MainActivity.lokale_opskrifters)
-                    { if (o.getNavn().contains(newText))
-                    {
-                            resultater.add(o);
-                        }
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                lvOpskrifter.setAdapter(adapter);
+         søgEfterNavn(newText, adapter);
                 return false;
             }
         });
+
 
 
         FloatingActionButton addOpskrift = (FloatingActionButton) view.findViewById(R.id.addOpskrift);
@@ -142,6 +129,26 @@ public class OpskrifterFragment extends Fragment {
         popup_plan dialog = new popup_plan();
         dialog.Opskrift_object = obj;
         dialog.show(getFragmentManager(), "popup_plan");
+    }
+
+    public void søgEfterNavn(String newText, OpskrifterAdapter adapter)
+    {
+        resultater.clear();
+
+        if (newText.length() == 0) {
+            resultater.addAll(MainActivity.lokale_opskrifters); }
+        else {
+            resultater.clear();
+            for (Opskrifter o : MainActivity.lokale_opskrifters)
+            { if (o.getNavn().contains(newText))
+            {
+                resultater.add(o);
+            }
+            }
+        }
+        adapter.notifyDataSetChanged();
+        lvOpskrifter.setAdapter(adapter);
+
     }
 
     @Override
